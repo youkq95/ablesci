@@ -1,0 +1,13 @@
+name = "ablesci-checkin"
+main = "worker.js"
+compatibility_date = "2023-12-01"
+
+# Schedule the worker to run daily at 00:00 UTC (8:00 AM Beijing Time)
+[triggers]
+crons = ["0 0 * * *"]
+
+# To deploy:
+# 1. Install wrangler: npm install -g wrangler
+# 2. Login: wrangler login
+# 3. Set the cookie secret: wrangler secret put COOKIE
+# 4. Deploy: wrangler deploy
