@@ -6,6 +6,7 @@ export default {
 
     // HTTP Handler for manual testing
     async fetch(request, env, ctx) {
+        // Manually trigger the check-in logic
         const result = await handleRequest(env);
         return new Response(JSON.stringify(result), {
             headers: { "content-type": "application/json" },
