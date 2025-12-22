@@ -17,9 +17,6 @@ export default {
 async function handleRequest(env) {
     const url = "https://www.ablesci.com/user/sign";
 
-    // Debugging: List all available environment keys
-    console.log("Available Env Keys:", Object.keys(env));
-
     // Get Cookie from environment variables
     const cookie = env.COOKIE;
 
@@ -38,8 +35,7 @@ async function handleRequest(env) {
         return {
             success: false,
             message: errorMsg,
-            tip: "Secrets/Env vars often don't show up in the Quick Edit preview pane.",
-            debug_available_keys: Object.keys(env)
+            tip: "Secrets/Env vars often don't show up in the Quick Edit preview pane."
         };
     }
 
