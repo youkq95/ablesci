@@ -21,13 +21,26 @@ async function handleRequest(env) {
     console.log("Available Env Keys:", Object.keys(env));
 
     // Get Cookie from environment variables
-    // You should set this in Cloudflare dashboard or via wrangler secret put COOKIE
     const cookie = env.COOKIE;
 
     if (!cookie) {
-        const errorMsg = "Error: COOKIE environment variable not set. Please set it using 'wrangler secret put COOKIE'.";
+        const isEmptyEnv = Object.keys(env).length === 0;
+        let errorMsg = "Error: COOKIE environment variable not found.";
+
+        if (isEmptyEnv) {
+            errorMsg += " [TIP/提示]: You seem to be running in the Cloudflare Editor/Preview. Secrets (Cookies) are NOT loaded here! Please open the deployed Worker URL directly in a new browser tab to test.";
+        } else {
+            errorMsg += " Please ensure you have set the 'COOKIE' variable in Cloudflare Dashboard -> Settings -> Variables.";
+        }
+
         console.error(errorMsg);
-        return { success: false, message: errorMsg };
+        // Return friendly JSON so the user sees the tip in the browser too
+        return {
+            success: false,
+            message: errorMsg,
+            tip: "Secrets/Env vars often don't show up in the Quick Edit preview pane.",
+            debug_available_keys: Object.keys(env)
+        };
     }
 
     const headers = {
