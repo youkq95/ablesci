@@ -17,6 +17,9 @@ export default {
 async function handleRequest(env) {
     const url = "https://www.ablesci.com/user/sign";
 
+    // Debugging: List all available environment keys
+    console.log("Available Env Keys:", Object.keys(env));
+
     // Get Cookie from environment variables
     // You should set this in Cloudflare dashboard or via wrangler secret put COOKIE
     const cookie = env.COOKIE;
