@@ -1,4 +1,4 @@
-name = "ablesci-checkin"
+name = "ablesci"
 main = "worker.js"
 compatibility_date = "2023-12-01"
 
